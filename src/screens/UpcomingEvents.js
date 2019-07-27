@@ -5,7 +5,10 @@ class Events extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Events</Text>
+        <View>
+          <Text>Upcoming Events</Text>
+        </View>
+        <View />
       </View>
     );
   }
@@ -14,8 +17,6 @@ export default Events;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center"
+    flex: 1
   }
 });
