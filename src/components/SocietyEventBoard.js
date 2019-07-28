@@ -1,24 +1,57 @@
-import React from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import React, { Component } from "react";
+import { View, Text, FlatList, ScrollView } from "react-native";
 import SocietyCardView from "./SocietyCardView";
 import SocietyHeader from "./SocietyHeader";
 
-// Fetch from database here
+import firebase from "react-native-firebase";
+// import console = require("console");
+// import console = require("console");
 
-const EventBoard = props => (
-  <View style={{ flex: 1 }}>
-    <SocietyHeader image={props.societythumb} name={props.societyname} />
-    <ScrollView
-      horizontal={true}
-      contentContainerStyle={{ padding: 10 }}
-      showsHorizontalScrollIndicator={false}
-      style={{}}
-    >
-      <SocietyCardView />
-      <SocietyCardView />
-      <SocietyCardView />
-      <SocietyCardView />
-    </ScrollView>
-  </View>
-);
+class EventBoard extends Component {
+  constructor() {
+    super();
+    this.state = {
+      list: []
+    };
+    this.ref = firebase.firestore().collection("UpcomingEvents");
+  }
+
+  componentDidMount() {
+    this.ref.doc(this.props.societyname).collection("Events").onSnapshot(querysnapshot => {
+      this.setState({
+        list: []
+      });
+      // console.log(querysnapshot)
+      querysnapshot.forEach(doc => {
+        console.log(doc)
+        this.setState({
+          list: this.state.list.concat(doc.data())
+        });
+      });
+    });
+  }
+
+  render() {
+    return (
+      <View style={{ flex: 1 }}>
+        <SocietyHeader image={this.props.societythumb} name={this.props.societyname} />
+
+        <FlatList
+          data={this.state.list}
+          style={{
+            flex: 1,
+            backgroundColor: "white"
+          }}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{
+            padding: 15
+          }}
+          keyExtractor={(item, index) => String(index)}
+          renderItem={({ item }) => <SocietyCardView data={item} />}
+        />
+      </View>
+    );
+  }
+}
 export default EventBoard;
