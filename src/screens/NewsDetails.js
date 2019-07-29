@@ -21,8 +21,11 @@ class NewsDetails extends Component {
     const cont_props = this.props.navigation.getParam("data", {
       Content: "You fucked up"
     });
+    console.log(this.props.navigation.getParam("title"));
 
     const { navigation } = this.props;
+
+    // console.log(cont_props);
 
     const headerHeight = this.state.scrollY.interpolate({
       inputRange: [0, HEADER_EXPANDED_HEIGHT - HEADER_COLLAPSED_HEIGHT],
@@ -52,7 +55,16 @@ class NewsDetails extends Component {
         />
         <View style={{ flex: 1 }}>
           <ScrollView
-            style={{ flex: 1 }}
+            style={{
+              flex: 1,
+             
+              position: "absolute",
+              top: 0,
+              bottom: 0,
+              left: 0,
+              right: 0,
+             
+            }}
             showsVerticalScrollIndicator={false}
             onScroll={Animated.event([
               {

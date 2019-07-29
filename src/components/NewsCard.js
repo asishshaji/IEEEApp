@@ -5,7 +5,7 @@ const NewsCard = props => (
   <TouchableOpacity
     style={styles.container}
     activeOpacity={1}
-    onPress={() => props.navigation.navigate("Details", { data: props.data })}
+    onPress={props.onpress}
   >
     <View style={{ flex: 1 }}>
       <Image

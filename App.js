@@ -8,10 +8,20 @@ import NewsDetails from "./src/screens/NewsDetails";
 import CreateBlog from "./src/screens/CreateBlog";
 import EventScreen from "./src/screens/UpcomingEvents";
 import ExComScreen from "./src/screens/ExComMembers";
+import firebase from "react-native-firebase";
 
 import Icon from "react-native-vector-icons/FontAwesome5";
 
 import React from "react";
+
+const channel = new firebase.notifications.Android.Channel(
+  "notifications123",
+  "Notifications",
+  firebase.notifications.Android.Importance.Max
+).setDescription("My apps test channel");
+
+// Create the channel
+firebase.notifications().android.createChannel(channel);
 
 const NewsTab = createStackNavigator(
   {
@@ -19,7 +29,8 @@ const NewsTab = createStackNavigator(
       screen: NewsScreen
     },
     Details: {
-      screen: NewsDetails
+      screen: NewsDetails,
+      path: "news/:title"
     },
     CreateBlog: {
       screen: CreateBlog
@@ -79,8 +90,14 @@ const AppNavigator = createBottomTabNavigator(
     }
   },
   {
-    initialRouteName: "Events"
+    initialRouteName: "News"
   }
 );
 
-export default createAppContainer(AppNavigator);
+const App = createAppContainer(AppNavigator);
+
+const prefix = "ieeenssce://";
+
+const MainApp = () => <App uriPrefix={prefix} />;
+
+export default MainApp;

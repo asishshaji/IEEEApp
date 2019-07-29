@@ -17,24 +17,28 @@ class EventBoard extends Component {
   }
 
   componentDidMount() {
-    this.ref.doc(this.props.societyname).collection("Events").onSnapshot(querysnapshot => {
-      this.setState({
-        list: []
-      });
-      // console.log(querysnapshot)
-      querysnapshot.forEach(doc => {
-        console.log(doc)
+    this.ref
+      .doc(this.props.societyname)
+      .collection("Events")
+      .onSnapshot(querysnapshot => {
         this.setState({
-          list: this.state.list.concat(doc.data())
+          list: []
+        });
+        querysnapshot.forEach(doc => {
+          this.setState({
+            list: this.state.list.concat(doc.data())
+          });
         });
       });
-    });
   }
 
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <SocietyHeader image={this.props.societythumb} name={this.props.societyname} />
+        <SocietyHeader
+          image={this.props.societythumb}
+          name={this.props.societyname}
+        />
 
         <FlatList
           data={this.state.list}
