@@ -8,11 +8,10 @@ const SocietyCard = props => {
   console.log("props.data");
   return (
     <LinearGradient
-      colors={["#ED4264", "#F3607D", "#ED4264"]}
+      colors={["#2980B9", "#2193b0", "#6dd5ed"]}
       style={{
         height: 180,
         width: 140,
-        backgroundColor: "red",
         margin: 5,
         borderRadius: 20,
         elevation: 2,
@@ -41,7 +40,8 @@ const SocietyCard = props => {
             color: "#fff",
             textAlign: "center",
             textTransform: "uppercase",
-            fontWeight: "700"
+            fontWeight: "700",
+            fontSize:12
           }}
         >
           {props.data.Date}
@@ -52,7 +52,7 @@ const SocietyCard = props => {
           <Text
             style={{
               color: "#fff",
-              fontSize: 14,
+              fontSize: 12,
               textAlign: "center",
               fontFamily: "MerriweatherSans",
               textTransform: "uppercase"
@@ -64,10 +64,10 @@ const SocietyCard = props => {
       </View>
       <View
         style={{
-          padding: 5,
+          padding: 10,
           marginTop: 5,
           flexDirection: "row",
-          justifyContent: "center"
+          justifyContent: "center",
         }}
       >
         <Icon
@@ -81,9 +81,10 @@ const SocietyCard = props => {
           style={{
             marginLeft: 10,
             color: "#fff",
-            textAlign: "center",
+            textAlign: "left",
             textTransform: "uppercase",
-            fontWeight: "700"
+            fontWeight: "700",
+            fontSize: 12
           }}
         >
           {props.data.Venue}

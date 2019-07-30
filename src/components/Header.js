@@ -19,14 +19,14 @@ const Header = props => (
     }}
   >
     <Image
-      source={{ uri: "https://www.ieeesbnssce.org/images/logo2.png" }}
+      source={require("../../assets/logo.png")}
       style={{ flex: 1, resizeMode: "center", height: 40, width: "100%" }}
     />
     <Icon
       type="ionicons"
       size={24}
       name="notifications"
-      containerStyle={{padding:5}}
+      containerStyle={{ padding: 5 }}
       iconStyle={{ color: "#676767" }}
     />
   </View>
