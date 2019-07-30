@@ -13,63 +13,61 @@ const NewsCard = props => (
         style={{ flex: 1, borderRadius: 10 }}
       />
     </View>
-    <View>
+
+    <View
+      style={{
+        position: "absolute",
+        bottom: -10,
+        backgroundColor: "#FFFFFF",
+        right: 10,
+        left: 10,
+        borderRadius: 10,
+        padding: 10,
+        elevation: 1
+      }}
+    >
+      <Text
+        style={{
+          marginLeft: 5,
+          fontSize: 14,
+          fontWeight: "500",
+          color: "#474747",
+          flex: 1,
+          fontFamily: "RobotoSlab-Regular",
+          textAlign: "left"
+        }}
+      >
+        {props.data.Title}
+      </Text>
       <View
         style={{
-          position: "absolute",
-          bottom: -10,
-          backgroundColor: "#FFFFFF",
-          right: 10,
-          left: 10,
-          height: 70,
-          borderRadius: 10,
-          padding: 10,
-          elevation: 1
+          flex: 1,
+          marginLeft: 5,
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center"
         }}
       >
         <Text
           style={{
-            marginLeft: 5,
-            fontSize: 14,
-            fontWeight: "500",
-            color: "#474747",
-            flex: 1,
+            color: "#059AAE",
             fontFamily: "RobotoSlab-Regular",
-            textAlign: "left"
+            fontWeight: "400",
+            fontSize: 12
           }}
         >
-          {props.data.Title}
+          {props.data.Tag}
         </Text>
-        <View
+        <Text
           style={{
-            flex: 1,
-            marginLeft: 5,
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center"
+            color: "#059AAE",
+            fontFamily: "RobotoSlab-Regular",
+            fontWeight: "400",
+            fontSize: 12
           }}
         >
-          <Text
-            style={{
-              color: "#059AAE",
-              fontFamily: "RobotoSlab-Regular",
-              fontWeight: "400",
-              fontSize: 12
-            }}
-          >
-            {props.data.Tag}
-          </Text>
-          <Text
-            style={{
-              color: "#059AAE",
-              fontFamily: "RobotoSlab-Regular",
-              fontWeight: "400",
-              fontSize: 12
-            }}
-          >
-            {props.data.Date}
-          </Text>
-        </View>
+          {props.data.Date}
+        </Text>
       </View>
     </View>
   </TouchableOpacity>
@@ -85,3 +83,5 @@ const styles = StyleSheet.create({
     elevation: 1
   }
 });
+
+

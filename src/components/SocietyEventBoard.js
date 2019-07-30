@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { View, Text, FlatList, ScrollView } from "react-native";
+import { View, Text, FlatList, Modal, TouchableHighlight } from "react-native";
 import SocietyCardView from "./SocietyCardView";
 import SocietyHeader from "./SocietyHeader";
+import ModalView from "../components/ModalView";
 
 import firebase from "react-native-firebase";
 // import console = require("console");
@@ -11,7 +12,9 @@ class EventBoard extends Component {
   constructor() {
     super();
     this.state = {
-      list: []
+      list: [],
+      clickedItem: null,
+      modalVisible: false
     };
     this.ref = firebase.firestore().collection("UpcomingEvents");
   }
@@ -52,8 +55,51 @@ class EventBoard extends Component {
             padding: 15
           }}
           keyExtractor={(item, index) => String(index)}
-          renderItem={({ item }) => <SocietyCardView data={item} />}
+          renderItem={({ item }) => (
+            <SocietyCardView
+              data={item}
+              onPress={() => {
+                this.setState({
+                  clickedItem: item,
+                  modalVisible: true
+                });
+              }}
+            />
+          )}
         />
+        <View style={{ flex: 1, justifyContent: "center" }}>
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={this.state.modalVisible}
+            onRequestClose={() => {
+              this.setState({
+                modalVisible: !this.state.modalVisible
+              });
+            }}
+          >
+            <View
+              style={{
+                flex: 1,
+                backgroundColor: "transparent",
+                justifyContent: "center",
+                alignItems: "center"
+              }}
+            >
+              <View
+                style={{
+                  height: "80%",
+                  width: "90%",
+                  backgroundColor: "#fff",
+                  borderRadius: 10,
+                  elevation: 2
+                }}
+              >
+                <ModalView data={this.state.clickedItem} />
+              </View>
+            </View>
+          </Modal>
+        </View>
       </View>
     );
   }

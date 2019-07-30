@@ -14,6 +14,13 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 
 import React from "react";
 
+firebase
+  .auth()
+  .signInAnonymously()
+  .then(() => {
+    console.log("Logged in");
+  });
+
 const channel = new firebase.notifications.Android.Channel(
   "notifications123",
   "Notifications",
@@ -90,7 +97,7 @@ const AppNavigator = createBottomTabNavigator(
     }
   },
   {
-    initialRouteName: "News"
+    initialRouteName: "Events"
   }
 );
 

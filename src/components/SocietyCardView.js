@@ -48,7 +48,7 @@ const SocietyCard = props => {
         </Text>
       </View>
       <View style={{ padding: 5, marginTop: 5 }}>
-        <TouchableOpacity onPress={()=>alert("Clicked")} activeOpacity={1}>
+        <TouchableOpacity onPress={() => props.onPress()} activeOpacity={1}>
           <Text
             style={{
               color: "#fff",

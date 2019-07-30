@@ -38,7 +38,8 @@ const SocietyHeader = props => (
           borderRadius: 30
         }}
         source={{
-          uri: props.image
+          uri: props.image,
+          cache: "only-if-cached"
         }}
       />
     </View>

@@ -28,7 +28,7 @@ class NewsDetails extends Component {
     // console.log(cont_props);
 
     const headerHeight = this.state.scrollY.interpolate({
-      inputRange: [0, HEADER_EXPANDED_HEIGHT - HEADER_COLLAPSED_HEIGHT],
+      inputRange: [0, HEADER_EXPANDED_HEIGHT - HEADER_COLLAPSED_HEIGHT / 2],
       outputRange: [HEADER_EXPANDED_HEIGHT, HEADER_COLLAPSED_HEIGHT],
       extrapolate: "clamp"
     });
@@ -52,18 +52,18 @@ class NewsDetails extends Component {
           opacity={opacity}
           opacityImage={opacityImage}
           navigation={navigation}
+          title={cont_props.Title}
         />
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, padding: 20 }}>
           <ScrollView
             style={{
               flex: 1,
-             
+
               position: "absolute",
               top: 0,
               bottom: 0,
               left: 0,
-              right: 0,
-             
+              right: 0
             }}
             showsVerticalScrollIndicator={false}
             onScroll={Animated.event([
@@ -75,6 +75,7 @@ class NewsDetails extends Component {
                 }
               }
             ])}
+            scrollEventThrottle={16}
           >
             <View style={{ flex: 1, padding: 20 }}>
               <Text

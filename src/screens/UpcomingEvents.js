@@ -8,7 +8,7 @@ class Events extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <ScrollView showsVerticalScrollIndicator={false}>
+        <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
           <View style={{ height: 70, marginTop: 10 }}>
             <Text
               style={{
@@ -30,8 +30,7 @@ class Events extends Component {
             societythumb="https://www.ieee-pes.org/images/files/logos/IEEE-PES-Logo-Web-No-Background.png"
           />
         </ScrollView>
-
-        <View />
+       
       </View>
     );
   }
@@ -41,6 +40,6 @@ export default Events;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor:"#fff"
+    backgroundColor: "#fff"
   }
 });
