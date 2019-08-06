@@ -97,7 +97,7 @@ const AppNavigator = createBottomTabNavigator(
     }
   },
   {
-    initialRouteName: "Events"
+    initialRouteName: "ExCom"
   }
 );
 

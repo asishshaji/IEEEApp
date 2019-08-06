@@ -1,14 +1,44 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { View, Text, StyleSheet, ScrollView, FlatList } from "react-native";
 import UserCard from "../components/UserCard";
+import firebase from "react-native-firebase";
 
 class ExCom extends Component {
+  constructor() {
+    super();
+    this.state = {
+      ref: null,
+      list: [],
+      selectedSociety: "ExCom"
+    };
+    this.state.ref = firebase
+      .firestore()
+      .collection("Members")
+      .doc(this.state.selectedSociety)
+      .collection("Members");
+  }
+
+  componentDidMount() {
+    this.state.ref.onSnapshot(querySnapshot => {
+      this.setState({
+        list: []
+      });
+      querySnapshot.forEach(doc => {
+        this.setState({
+          list: this.state.list.concat(doc.data())
+        });
+      });
+    });
+  }
+
   render() {
+    console.log(this.state.list);
+
     return (
       <View style={styles.container}>
         <ScrollView
           showsVerticalScrollIndicator={false}
-          style={{ flex: 1 }}
+          style={{ flex: 1, backgroundColor: "#fff" }}
         >
           <Text
             style={{
@@ -18,30 +48,31 @@ class ExCom extends Component {
               marginLeft: 10,
               textAlign: "center",
               marginTop: 10,
-              color: "#2E4490"
+              color: "#2E4490",
+              backgroundColor: "#fff"
             }}
           >
             EXCOM 2K19
           </Text>
-          <UserCard
-            name="ABHINAV R"
-            designation="Chairman"
-            url="https://www.ieeesbnssce.org/images/team/2.jpg"
-          />
-          <UserCard
-            name="ABHIRAJ V S"
-            designation="Vice Chairman"
-            url="https://www.ieeesbnssce.org/images/team/26.jpg"
-          />
-          <UserCard
-            name="ATHIRA M"
-            designation="Secretary"
-            url="https://www.ieeesbnssce.org/images/team/14.jpg"
-          />
-          <UserCard
-            name="ANJU MARIYA"
-            designation="Link Representative"
-            url="https://www.ieeesbnssce.org/images/team/34.jpg"
+
+          <FlatList
+            data={this.state.list}
+            style={{
+              flex: 1,
+              backgroundColor: "white"
+            }}
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={{
+              padding: 15
+            }}
+            keyExtractor={(item, index) => String(index)}
+            renderItem={({ item }) => (
+              <UserCard
+                name={item.Name}
+                designation={item.Position}
+                url={item.ImageUrl}
+              />
+            )}
           />
         </ScrollView>
       </View>
@@ -52,6 +83,6 @@ export default ExCom;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 1
   }
 });
