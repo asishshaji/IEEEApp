@@ -88,7 +88,8 @@ class EventBoard extends Component {
                 left: 0,
                 right: 0,
                 backgroundColor: "black",
-                opacity: 0.5
+                opacity: 0.5,
+                
               }}
             />
             <View
@@ -102,7 +103,7 @@ class EventBoard extends Component {
             >
               <View
                 style={{
-                  height: "80%",
+                  height: "60%",
                   width: "90%",
                   backgroundColor: "#fff",
                   borderRadius: 10,

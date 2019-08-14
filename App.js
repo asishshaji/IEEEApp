@@ -7,6 +7,8 @@ import NewsScreen from "./src/screens/News";
 import NewsDetails from "./src/screens/NewsDetails";
 import CreateBlog from "./src/screens/CreateBlog";
 import EventScreen from "./src/screens/UpcomingEvents";
+import Notification from "./src/screens/NotificationScreen";
+
 import ExComScreen from "./src/screens/ExComMembers";
 import firebase from "react-native-firebase";
 
@@ -41,6 +43,9 @@ const NewsTab = createStackNavigator(
     },
     CreateBlog: {
       screen: CreateBlog
+    },
+    Notification: {
+      screen: Notification
     }
   },
   {
@@ -97,7 +102,7 @@ const AppNavigator = createBottomTabNavigator(
     }
   },
   {
-    initialRouteName: "ExCom"
+    initialRouteName: "News"
   }
 );
 

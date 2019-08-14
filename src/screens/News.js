@@ -14,7 +14,7 @@ import firebase, { Notification, RemoteMessage } from "react-native-firebase";
 
 class News extends Component {
   static navigationOptions = {
-    header: <Header />
+    header: null
   };
 
   constructor() {
@@ -98,6 +98,7 @@ class News extends Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
+        <Header navigation={this.props.navigation} />
         <FlatList
           data={this.state.list}
           style={{

@@ -28,6 +28,7 @@ const Header = props => (
       name="notifications"
       containerStyle={{ padding: 5 }}
       iconStyle={{ color: "#676767" }}
+      onPress={()=>props.navigation.navigate('Notification')}
     />
   </View>
 );

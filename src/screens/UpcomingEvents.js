@@ -1,10 +1,31 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
+import { View, Text, StyleSheet, FlatList, ScrollView } from "react-native";
 import SocietyEventBoard from "../components/SocietyEventBoard";
-
+import firebase from "react-native-firebase";
 // Standard Avatar
 
 class Events extends Component {
+  constructor() {
+    super();
+    this.state = {
+      ref: null,
+      societyList: []
+    };
+    this.state.ref = firebase.firestore().collection("Society");
+  }
+  componentDidMount() {
+    this.state.ref.onSnapshot(querySnapshot => {
+      this.setState({
+        societyList: []
+      });
+      querySnapshot.forEach(doc => {
+        this.setState({
+          societyList: this.state.societyList.concat(doc.data())
+        });
+      });
+    });
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -21,16 +42,25 @@ class Events extends Component {
               Upcoming {"\n"}Events
             </Text>
           </View>
-          <SocietyEventBoard
-            societyname="CS | IEEE COMPUTER SOCIETY"
-            societythumb="https://ieeecs-media.computer.org/wp-media/2018/04/02183615/IEEE-CS_LogoTM-orange-300x103.png"
-          />
-          <SocietyEventBoard
-            societyname="PES | IEEE POWER & ENERGY SOCIETY"
-            societythumb="https://www.ieee-pes.org/images/files/logos/IEEE-PES-Logo-Web-No-Background.png"
+          <FlatList
+            data={this.state.societyList}
+            style={{
+              flex: 1,
+              backgroundColor: "white"
+            }}
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={{
+              padding: 15
+            }}
+            keyExtractor={(item, index) => String(index)}
+            renderItem={({ item }) => (
+              <SocietyEventBoard
+                societyname={item.Name}
+                societythumb={item.Imageurl}
+              />
+            )}
           />
         </ScrollView>
-       
       </View>
     );
   }

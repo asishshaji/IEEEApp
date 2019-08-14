@@ -3,14 +3,15 @@ import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
 import { Icon } from "react-native-elements";
 
 const ModalView = props => (
-  <View style={{ flex: 1 ,borderRadius:10}}>
+  <View style={{ flex: 1, borderRadius: 10 }}>
     <ScrollView
       showsVerticalScrollIndicator={false}
       scrollEventThrottle={16}
+      overScrollMode="never"
       containerStyle={styles.container}
       style={{ flex: 1, borderRadius: 10, backgroundColor: "#fff" }}
     >
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, borderRadius: 10 }}>
         <View
           style={{
             width: "100%",
@@ -22,7 +23,7 @@ const ModalView = props => (
             left: 0,
             backgroundColor: "black",
             zIndex: 10000,
-            opacity: 0.7,
+            opacity: 0.4,
             borderRadius: 10
           }}
         />
@@ -78,7 +79,7 @@ const ModalView = props => (
               style={{
                 padding: 10,
                 marginTop: 5,
-                flex: 2,
+                flex: 0,
                 flexDirection: "row",
                 justifyContent: "flex-start"
               }}
@@ -134,14 +135,15 @@ const ModalView = props => (
         </View>
       </View>
 
-      <View style={{ flex: 1, padding: 10 }}>
+      <View style={{ flex: 1, padding: 5 }}>
         <Text
           style={{
             fontFamily: "RobotoSlab-Regular",
             fontSize: 14,
             color: "#5E5E5E",
             marginBottom: 5,
-            padding: 5
+            padding: 5,
+            textAlign: "auto"
           }}
         >
           {props.data.Content}

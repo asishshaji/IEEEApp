@@ -32,7 +32,6 @@ class ExCom extends Component {
   }
 
   render() {
-    console.log(this.state.list);
 
     return (
       <View style={styles.container}>
